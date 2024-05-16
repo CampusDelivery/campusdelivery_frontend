@@ -1,0 +1,39 @@
+/**
+* Project: campusdelivery
+* Created by: Selina Edelsbrunner
+* Date: 03.05.2024
+* Time: 08:59
+*/
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.styled-table {
+    width: 80%;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid black;
+}
+
+.styled-button {
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    border: none;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.styled-button:hover {
+    background-color: #333;
+}
