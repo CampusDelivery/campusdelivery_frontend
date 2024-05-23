@@ -12,7 +12,8 @@ import Registration from "./components/Registration";
 
 function App() {
   const mockdata = require("./mockdata/mock_trips.json");
-  const [trips, setTrips] = useState<ITrip[]>(mockdata)
+  const [trips, setTrips] = useState<ITrip[]>(mockdata);
+
 
   return (
     <div className="App">
