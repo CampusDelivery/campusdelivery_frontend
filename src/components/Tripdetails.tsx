@@ -1,32 +1,36 @@
 import React from 'react';
-import {ITrip} from "../models/ITrip";
-import {Person4} from "@mui/icons-material";
-import './tripsstyle.css';
+import { ITrip } from "../models/ITrip";
+import { Person4 } from "@mui/icons-material";
+import './css/tripsstyle.css';
 
-interface TripdetailsProps{
-    trip:ITrip
+interface TripdetailsProps {
+    trip: ITrip;
 }
-const Tripdetails:React.FC<TripdetailsProps> = ({trip}) => {
-    return (
-        <>
-            <table className={"styled-table"}>
-                <thead>
-                <th>Trip</th>
-                <th>User</th>
-                <th>Destination</th>
-                <th>Time</th>
 
+const Tripdetails: React.FC<TripdetailsProps> = ({ trip }) => {
+    return (
+        <div className="trip-details-container">
+            <table className="styled-table">
+                <thead>
+                <tr>
+                    <th>Trip</th>
+                    <th>User</th>
+                    <th>Destination</th>
+                    <th>Time</th>
+                </tr>
                 </thead>
                 <tbody>
-                <td>{trip.tripId}</td>
-                <td>{trip.userId}</td>
-                <td>{trip.destination}</td>
-                <td>{trip.time}</td>
+                <tr>
+                    <td>{trip.id}</td>
+                    <td>
+                        {trip.user.firstname} {trip.user.lastname}
+                    </td>
+                    <td>{trip.destination}</td>
+                    <td>{trip.time}</td>
+                </tr>
                 </tbody>
             </table>
-
-
-        </>
+        </div>
     );
 };
 

@@ -6,7 +6,7 @@
  */
 
 import React, {useState} from 'react';
-import {Button, Input} from "@mui/material";
+import {Box, Button, Container, Input, TextField, Typography} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 
 const Registration = () => {
@@ -22,58 +22,59 @@ const Registration = () => {
     navigate("/");
     }
     return (
-        <div>
-            <form onSubmit={handleRegistration}>
-                <div>
-                    <h1>Registration</h1>
-                    <label>
-                        Vorname:
-                        <Input
-                            type="vorname"
-                            value={vorname}
-                            onChange={(e) => setVorname(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Nachname:
-                        <Input
-                            type="nachname"
-                            value={nachname}
-                            onChange={(e) => setNachname(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Email:
-                        <Input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Password:
-                        <Input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <Button type="submit">Login</Button>
-            </form>
-            {error && <p style={{color: 'red'}}>{error}</p>}
-            {success && <p style={{color: 'green'}}>{success}</p>}
-        </div>
+        <Container maxWidth="xs">
+            <Box className="form-container">
+                <form onSubmit={handleRegistration} className="form">
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        Registration
+                    </Typography>
+                    <TextField
+                        label="Vorname"
+                        type="text"
+                        value={vorname}
+                        onChange={(e) => setVorname(e.target.value)}
+                        required
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Nachname"
+                        type="text"
+                        value={nachname}
+                        onChange={(e) => setNachname(e.target.value)}
+                        required
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        fullWidth
+                        margin="normal"
+                    />
+                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                        Registrieren
+                    </Button>
+                </form>
+                {error && <Typography color="error" className="feedback">{error}</Typography>}
+                {success && <Typography color="primary" className="feedback">{success}</Typography>}
+                <Link to="/login" className="registration-link">
+                    Login?
+                </Link>
+            </Box>
+        </Container>
     );
 };
 

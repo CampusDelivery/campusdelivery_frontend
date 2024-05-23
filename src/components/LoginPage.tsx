@@ -7,8 +7,9 @@
 
 import React, {FormEvent, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import {Button, Input} from "@mui/material";
+import {Box, Button, Container, Input, TextField, Typography} from "@mui/material";
 import axios from "axios";
+import './css/formstyle.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -52,38 +53,41 @@ const LoginPage = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <h1>Login</h1>
-                    <label>
-                        Email:
-                        <Input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Password:
-                        <Input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <Button type="submit">Login</Button>
-            </form>
-            {error && <p style={{color: 'red'}}>{error}</p>}
-            {success && <p style={{color: 'green'}}>{success}</p>}
-            <Link to={"/registration"}>Registrieren?</Link>
-        </div>
-
+        <Container maxWidth="xs">
+            <Box className="form-container">
+                <form onSubmit={handleLogin} className="form">
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        Login
+                    </Typography>
+                    <TextField
+                        label="Email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        fullWidth
+                        margin="normal"
+                    />
+                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                        Login
+                    </Button>
+                </form>
+                {error && <Typography color="error" className="feedback">{error}</Typography>}
+                {success && <Typography color="primary" className="feedback">{success}</Typography>}
+                <Link to="/registration" className="registration-link">
+                    Registrieren?
+                </Link>
+            </Box>
+        </Container>
     );
 };
 

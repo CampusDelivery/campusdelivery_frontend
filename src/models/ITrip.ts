@@ -1,3 +1,5 @@
+import {IUser} from "./IUser";
+
 /**
  * Project: campusdelivery
  * Created by: Selina Edelsbrunner
@@ -5,8 +7,8 @@
  * Time: 07:50
  */
 export interface ITrip{
-    tripId:number,
-    userId:string,
+    id:number,
+    user:IUser,
     destination:string,
     time:string,
     maxNumberOfOrders:number,
