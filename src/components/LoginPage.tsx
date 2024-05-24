@@ -32,17 +32,16 @@ const LoginPage = () => {
                 console.log("login success")
 
                 let username = response.data.email;
-                let pwd = response.data.email;
+                let pwd = response.data.password;
 
                 let today = new Date();
                 var expire = new Date();
                 expire.setTime(today.getTime() + 3600000*24*15);
 
-                document.cookie = "name="+username.value+";path=/" + ";expires="+expire.toUTCString();
-                document.cookie = "password="+encodeURI(pwd.value)+";path=/" + ";expires="+expire.toUTCString();
+                document.cookie = "name="+username+";path=/" + ";expires="+expire.toUTCString();
+                document.cookie = "password="+encodeURI(pwd)+";path=/" + ";expires="+expire.toUTCString();
 
-
-                 navigate("/")
+                 navigate("/createTrip")
 
 
             if (response.status === 404) {
@@ -53,8 +52,6 @@ const LoginPage = () => {
             } else if (response.status === 400) {
                 setError("An error occurred while logging in")
                 console.log("login failed while logging in!")
-                console.log(email)
-                console.log(password)
             }
 
         }catch (error1){

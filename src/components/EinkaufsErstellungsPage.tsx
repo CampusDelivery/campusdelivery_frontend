@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {getUser} from "../Utility";
 
 const EinkaufsErstellungsPage = () => {
+
+
     return (
         <div>
-            Test
+
         </div>
     );
 };
