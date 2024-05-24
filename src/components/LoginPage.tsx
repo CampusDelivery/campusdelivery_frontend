@@ -24,17 +24,28 @@ const LoginPage = () => {
         setError('');
         setSuccess('');
         try {
-
-
-            const response = await axios.post("localhost:3003/user/login", {
+            const response = await axios.post("http://localhost:3003/user/login", {
                 email, password
             });
 
-            if (response.data.email === email && response.data.password === password) {
                 setSuccess('Login successful')
                 console.log("login success")
-                navigate("/")
-            } else if (response.status === 404) {
+
+                let username = response.data.email;
+                let pwd = response.data.email;
+
+                let today = new Date();
+                var expire = new Date();
+                expire.setTime(today.getTime() + 3600000*24*15);
+
+                document.cookie = "name="+username.value+";path=/" + ";expires="+expire.toUTCString();
+                document.cookie = "password="+encodeURI(pwd.value)+";path=/" + ";expires="+expire.toUTCString();
+
+
+                 navigate("/")
+
+
+            if (response.status === 404) {
                 setError('Invalid password or username!')
                 console.log("login failed -> invalid password")
                 console.log(email)
