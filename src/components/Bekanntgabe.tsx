@@ -10,6 +10,7 @@ import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import './css/formstyle.css';
+import {getUser} from "../Utility";
 
 const Bekanntgabe = () => {
     const navigate = useNavigate();
@@ -20,11 +21,11 @@ const Bekanntgabe = () => {
 
     const onhandleBekanntgabe = () => {
         //trip wird erstellt:
-        // axios.post(`http://localhost:3003/user/trip/new?${getUser()}`, {
-        //     destination: destination,
-        //     time: time,
-        //     maxNumberOfOrders: maxNumberOfOrders,
-        // }).then((response) => console.log(response.status))
+        axios.post(`http://localhost:3003/trip/new?email=${getUser()}`, {
+            destination: destination,
+            time: time,
+            maxNumberOfOrders: maxNumberOfOrders,
+        }).then((response) => console.log(response.status))
         navigate("/createTrip")
     }
     return (
