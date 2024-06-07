@@ -11,6 +11,7 @@ import LoginPage from "./components/LoginPage";
 import Registration from "./components/Registration";
 import axios from "axios";
 import EinkaufsErstellungsPage from "./components/EinkaufsErstellungsPage";
+import Bekanntgabe from "./components/Bekanntgabe";
 
 function App() {
   const mockdata = require("./mockdata/mock_trips.json");
@@ -32,6 +33,7 @@ function App() {
               <Route path={"/login"} element={<LoginPage/>}></Route>
               <Route path={"/registration"} element={<Registration/>}></Route>
               <Route path={"/createTrip"} element={<EinkaufsErstellungsPage/>}></Route>
+              <Route path={"/createEinkauf"} element={<Bekanntgabe/>}></Route>
           </Routes>
       </BrowserRouter>
     </div>
