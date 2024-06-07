@@ -27,7 +27,7 @@ const LoginPage = () => {
             const response = await axios.post("http://localhost:3003/user/login", {
                 email, password
             });
-
+                console.log("Response" + response.status);
                 setSuccess('Login successful')
                 console.log("login success")
 

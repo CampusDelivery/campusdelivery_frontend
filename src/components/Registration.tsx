@@ -8,6 +8,8 @@
 import React, {useState} from 'react';
 import {Box, Button, Container, Input, TextField, Typography} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
+import {IUser} from "../models/IUser";
+import axios from "axios";
 
 const Registration = () => {
     const navigate = useNavigate();
@@ -19,12 +21,21 @@ const Registration = () => {
     const [success, setSuccess] = useState('');
 
     const handleRegistration = () => {
-    navigate("/");
+
+        axios.post("http://localhost:3003/user/new", {
+            firstname: vorname,
+            lastname: nachname,
+            email: email,
+            password: password
+        })
+            .then((response) => {
+                console.log("Response: " +response.data);
+            })
+        navigate("/createTrip")
     }
     return (
         <Container maxWidth="xs">
             <Box className="form-container">
-                <form onSubmit={handleRegistration} className="form">
                     <Typography variant="h4" component="h1" gutterBottom>
                         Registration
                     </Typography>
@@ -64,10 +75,10 @@ const Registration = () => {
                         fullWidth
                         margin="normal"
                     />
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                    <Button type="submit" variant="contained" color="primary" fullWidth onClick={() => {handleRegistration()}}>
                         Registrieren
                     </Button>
-                </form>
+
                 {error && <Typography color="error" className="feedback">{error}</Typography>}
                 {success && <Typography color="primary" className="feedback">{success}</Typography>}
                 <Link to="/login" className="registration-link">
