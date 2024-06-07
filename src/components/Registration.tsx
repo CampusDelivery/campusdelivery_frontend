@@ -29,7 +29,17 @@ const Registration = () => {
             password: password
         })
             .then((response) => {
-                console.log("Response: " +response.data);
+                console.log("Registrieren erfolgreich");
+
+                let username = response.data.email;
+                let pwd = response.data.password;
+
+                let today = new Date();
+                var expire = new Date();
+                expire.setTime(today.getTime() + 3600000*24*15);
+
+                document.cookie = "name="+username+";path=/" + ";expires="+expire.toUTCString();
+                document.cookie = "password="+encodeURI(pwd)+";path=/" + ";expires="+expire.toUTCString();
             })
         navigate("/createTrip")
     }
