@@ -16,7 +16,6 @@ import {IOrder} from "./models/IOrder";
 
 function App() {
   const [trips, setTrips] = useState<ITrip[]>(null);
-  const [orders, setOrders] = useState<IOrder[]>(null);
 
     useEffect(() => {
         axios.get("http://localhost:3003/trip/all")
