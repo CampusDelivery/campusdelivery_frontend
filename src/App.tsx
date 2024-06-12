@@ -11,10 +11,12 @@ import LoginPage from "./components/LoginPage";
 import Registration from "./components/Registration";
 import axios from "axios";
 import EinkaufsErstellungsPage from "./components/EinkaufsErstellungsPage";
+import EinkaufsListe from "./components/EinkaufsListe";
+import {IOrder} from "./models/IOrder";
 
 function App() {
-  const mockdata = require("./mockdata/mock_trips.json");
   const [trips, setTrips] = useState<ITrip[]>(null);
+  const [orders, setOrders] = useState<IOrder[]>(null);
 
     useEffect(() => {
         axios.get("http://localhost:3003/trip/all")

@@ -6,7 +6,6 @@
  */
 export interface IArticle{
     aid:number,
-    orderId:number,
     description:string,
     count:number,
 }

@@ -1,3 +1,5 @@
+import {IArticle} from "./IArticle";
+
 /**
  * Project: campusdelivery
  * Created by: Selina Edelsbrunner
@@ -8,5 +10,6 @@ export interface IOrder{
     orderId:number,
     tripId:number,
     ordername:string,
+    articles: IArticle[]
 
 }
