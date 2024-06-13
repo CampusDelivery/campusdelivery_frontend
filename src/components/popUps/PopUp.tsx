@@ -5,7 +5,7 @@
  * Time: 09:48
  */
 import React from 'react';
-import "./popup.css"
+import "./popup.scss"
 
 interface PopUpProps {
     children: React.ReactNode

@@ -36,7 +36,7 @@ const LoginPage = () => {
 
                 let today = new Date();
                 var expire = new Date();
-                expire.setTime(today.getTime() + 3600000*24*15);
+                expire.setTime(today.getTime() + 1800000);
 
                 document.cookie = "name="+username+";path=/" + ";expires="+expire.toUTCString();
                 document.cookie = "password="+encodeURI(pwd)+";path=/" + ";expires="+expire.toUTCString();

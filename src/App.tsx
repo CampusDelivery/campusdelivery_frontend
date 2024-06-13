@@ -10,11 +10,11 @@ import Tripdetails from "./components/Tripdetails";
 import LoginPage from "./components/LoginPage";
 import Registration from "./components/Registration";
 import axios from "axios";
-import EinkaufsErstellungsPage from "./components/EinkaufsErstellungsPage";
-import EinkaufsListe from "./components/EinkaufsListe";
+import TripOverview from "./components/TripOverview";
+import ShoppingList from "./components/ShoppingList";
 import {IOrder} from "./models/IOrder";
 import CreateOrder from "./components/CreateOrder";
-import Bekanntgabe from "./components/Bekanntgabe";
+import CreateTrip from "./components/CreateTrip";
 
 function App() {
   const [trips, setTrips] = useState<ITrip[]>(null);
@@ -34,9 +34,9 @@ function App() {
               <Route path={"/"} element={<Dashboard trips={trips}/>}></Route>
               <Route path={"/login"} element={<LoginPage/>}></Route>
               <Route path={"/registration"} element={<Registration/>}></Route>
-              <Route path={"/tripOverview"} element={<EinkaufsErstellungsPage/>}></Route>
+              <Route path={"/tripOverview"} element={<TripOverview/>}></Route>
               <Route path={"/createOrder/:id"} element={<CreateOrder/>}></Route>
-              <Route path={"/createTrip"} element={<Bekanntgabe/>}></Route>
+              <Route path={"/createTrip"} element={<CreateTrip/>}></Route>
           </Routes>
       </BrowserRouter>
     </div>

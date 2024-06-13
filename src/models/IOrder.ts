@@ -7,9 +7,9 @@ import {IArticle} from "./IArticle";
  * Time: 07:49
  */
 export interface IOrder{
-    orderId:number,
+    id:number,
     tripId:number,
-    ordername:string,
+    ordererName:string,
     articles: IArticle[]
 
 }

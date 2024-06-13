@@ -13,7 +13,7 @@ import './css/formstyle.css';
 import {getUser} from "../Utility";
 
 
-const Bekanntgabe = () => {
+const CreateTrip = () => {
     const navigate = useNavigate();
     const [destination, setDestination] = useState<string>("");
     const [time, setTime] = useState<string>(null);
@@ -68,4 +68,4 @@ const Bekanntgabe = () => {
     );
 };
 
-export default Bekanntgabe;
+export default CreateTrip;

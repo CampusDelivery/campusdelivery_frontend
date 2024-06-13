@@ -15,13 +15,13 @@
   }
   &__container-inner{
     gap: 2rem;
-    background: antiquewhite;
+    background: #1565c0;
     height: fit-content;
     width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding: 2rem;
+    padding-bottom: 2rem;
     border-radius: 10px;
   }
 }

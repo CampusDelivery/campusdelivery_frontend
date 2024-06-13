@@ -14,48 +14,63 @@ import LoginPopUp from "./popUps/LoginPopUp";
 import './css/buttonstyle.css';
 import './css/dashboardstyle.css';
 import {getUser} from "../Utility";
+import RegistrationPopUp from "./popUps/RegistrationPopUp";
 
 interface DashboardProps{
     trips:ITrip[]
 }
 const Dashboard:React.FC<DashboardProps> = ({trips}) => {
-    // const [createPopup, setCreatePopup] = useState<boolean>(true);
+    const [loginPopup, setLoginPopup] = useState<boolean>(false);
+    const [registrationPopUp, setRegistrationPopUp] = useState<boolean>(false);
     const navigate = useNavigate();
     const handleLogin = () => {
-        console.log(trips);
-        navigate("/login");
+        setLoginPopup(true);
+    }
+
+    const handleRegistration = () => {
+        setLoginPopup(true);
+        setRegistrationPopUp(false);
     }
 
 
-
     return (
+        <div>
+            <Container maxWidth="lg" className="dashboard-container">
+                <Box className="header-container" display="flex" justifyContent="space-between" alignItems="center">
+                    <Typography variant="h4">DASHBOARD PAGE</Typography>
+                    {getUser() ?
+                        <Button variant="contained"
+                                         color="primary"
+                                         onClick={() => navigate("/tripOverview")}
+                                         className="login-button"
+                        >
+                            {getUser()}
+                        </Button> :
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleLogin}
+                            className="login-button"
+                        >
+                            Anmelden
+                        </Button>
+                    }
 
-        <Container maxWidth="lg" className="dashboard-container">
-            <Box className="header-container" display="flex" justifyContent="space-between" alignItems="center">
-                <Typography variant="h4">DASHBOARD PAGE</Typography>
-                {getUser() ? <h2>{getUser()}</h2> : <Link to="/login" className="login-link">
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleLogin}
-                        className="login-button"
-                    >
-                        Anmelden
-                    </Button>
-                </Link>}
+                </Box>
+                {/*<Button onClick={() => setCreatePopup(true)}>Anmelden</Button>*/}
+                {trips ? trips.map(t => {
+                    return (
+                        <Tripdetails trip={t}/>
+                    )
+                }) : ""}
 
-            </Box>
-            {/*<Button onClick={() => setCreatePopup(true)}>Anmelden</Button>*/}
-            {trips ? trips.map(t => {
-                return (
-                    <Tripdetails trip={t}/>
-                )
-            }) : ""}
-
-            {/*<LoginPopUp*/}
-            {/*    isOpen={createPopup}*/}
-            {/*    onCancelClick={()=> setCreatePopup(false)}/>*/}
-        </Container>
+                {/*<LoginPopUp*/}
+                {/*    isOpen={createPopup}*/}
+                {/*    onCancelClick={()=> setCreatePopup(false)}/>*/}
+            </Container>
+            <LoginPopUp isOpen={loginPopup} onCancelClick={() => setLoginPopup(false)}></LoginPopUp>
+            <RegistrationPopUp isOpen={registrationPopUp} onCancelClick={() => handleRegistration()}></RegistrationPopUp>
+        </div>
     );
 };
 
