@@ -6,7 +6,7 @@ const EinkaufsErstellungsPage = () => {
     const navigate = useNavigate();
 
     const onhandleBekanntgabe = () => {
-        navigate("/createEinkauf")
+        navigate("/createTrip")
     }
     return (
         <>

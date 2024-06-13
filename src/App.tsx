@@ -13,14 +13,16 @@ import axios from "axios";
 import EinkaufsErstellungsPage from "./components/EinkaufsErstellungsPage";
 import EinkaufsListe from "./components/EinkaufsListe";
 import {IOrder} from "./models/IOrder";
+import CreateOrder from "./components/CreateOrder";
+import Bekanntgabe from "./components/Bekanntgabe";
 
 function App() {
   const [trips, setTrips] = useState<ITrip[]>(null);
 
     useEffect(() => {
         axios.get("http://localhost:3003/trip/all")
-            .then(respose => {
-                setTrips(respose.data);
+            .then(response => {
+                setTrips(response.data);
             })
         trips? console.log(trips) : console.log("no trips");
     }, []);
@@ -32,7 +34,9 @@ function App() {
               <Route path={"/"} element={<Dashboard trips={trips}/>}></Route>
               <Route path={"/login"} element={<LoginPage/>}></Route>
               <Route path={"/registration"} element={<Registration/>}></Route>
-              <Route path={"/createTrip"} element={<EinkaufsErstellungsPage/>}></Route>
+              <Route path={"/tripOverview"} element={<EinkaufsErstellungsPage/>}></Route>
+              <Route path={"/createOrder/:id"} element={<CreateOrder/>}></Route>
+              <Route path={"/createTrip"} element={<Bekanntgabe/>}></Route>
           </Routes>
       </BrowserRouter>
     </div>

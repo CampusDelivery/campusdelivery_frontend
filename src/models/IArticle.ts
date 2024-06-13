@@ -5,7 +5,6 @@
  * Time: 07:53
  */
 export interface IArticle{
-    aid:number,
+    articleId:number,
     description:string,
-    count:number,
 }

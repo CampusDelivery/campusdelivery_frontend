@@ -26,7 +26,7 @@ const Bekanntgabe = () => {
             time: time,
             maxNumberOfOrders: maxNumberOfOrders,
         }).then((response) => console.log(response.status))
-        navigate("/createTrip")
+        navigate("/tripOverview")
     }
     return (
        <Container maxWidth="xs">
