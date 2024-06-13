@@ -39,7 +39,7 @@ const LoginPage = () => {
                 expire.setTime(today.getTime() + 1800000);
 
                 document.cookie = "name="+username+";path=/" + ";expires="+expire.toUTCString();
-                document.cookie = "password="+encodeURI(pwd)+";path=/" + ";expires="+expire.toUTCString();
+
 
                  navigate("/tripOverview")
 

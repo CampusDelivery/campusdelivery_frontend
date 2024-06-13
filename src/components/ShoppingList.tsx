@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './css/Einkaufsliste.css';
 import { IOrder } from '../models/IOrder';
+import {Button} from "@mui/material";
 
 interface EinkaufsListenProps {
-    orders: IOrder[];
+    orders: IOrder[]
+    back: () => void
 }
 
-const ShoppingList: React.FC<EinkaufsListenProps> = ({ orders }) => {
+const ShoppingList: React.FC<EinkaufsListenProps> = ({ orders, back }) => {
     const [orderList, setOrderList] = useState(
         orders ? orders.map(order => ({ ...order, completed: false })) : null
     );
@@ -38,6 +40,7 @@ const ShoppingList: React.FC<EinkaufsListenProps> = ({ orders }) => {
                     </li>
                 )) : <p>No data</p>}
             </ul>
+            <Button variant="contained" color="primary" onClick={() => back()}>Zurück</Button>
         </div>
     );
 };

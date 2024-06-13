@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography, List, ListItem, ListItemText, Autocomplete } from "@mui/material";
 import axios from "axios";
 import { IArticle } from "../models/IArticle";
+import HomeIcon from "@mui/icons-material/Home";
 
 const CreateOrder = () => {
     const { id } = useParams();
@@ -70,6 +71,7 @@ const CreateOrder = () => {
 
     return (
         <Container maxWidth="lg">
+            <Button onClick={() => navigate("/")}><HomeIcon fontSize={"large"} ></HomeIcon></Button>
             <Box display="flex" justifyContent="space-between" alignItems="flex-start">
                 <Box flex={1} maxWidth="xs" className="form-container" mr={2}>
                     <Typography variant="h4" component="h1" gutterBottom>

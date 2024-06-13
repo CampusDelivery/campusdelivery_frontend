@@ -5,6 +5,28 @@ import ShoppingList from "./ShoppingList";
 import { IOrder } from "../models/IOrder";
 import axios from "axios";
 import { getUser } from "../Utility";
+import { styled } from "@mui/system";
+import HomeIcon from '@mui/icons-material/Home';
+
+const CustomGridItem = styled(Grid)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+}));
+const CustomCard = styled(Card)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+}));
+const CustomCardContent = styled(CardContent)(({ theme }) => ({
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+}));
+const CheckboxWrapper = styled('div')(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 'auto',
+}));
 
 const TripOverview = () => {
     const navigate = useNavigate();
@@ -22,7 +44,6 @@ const TripOverview = () => {
                 axios.get(`http://localhost:3003/order/all?trip=${response.data.id}`)
                     .then(response => {
                         setOrders(response.data);
-                        // Initialize order status
                         const initialStatus: { [key: number]: boolean } = {};
                         response.data.forEach((order: IOrder) => {
                             initialStatus[order.id] = false; // default to not accepted
@@ -48,18 +69,18 @@ const TripOverview = () => {
 
         setAcceptedOrders(prevAcceptedOrders => {
             if (accepted) {
-                // Add order to acceptedOrders if it's not already present
                 const newAcceptedOrders = [...prevAcceptedOrders, orders.find(order => order.id === orderId)];
                 return newAcceptedOrders;
             } else {
-                // Remove order from acceptedOrders
                 return prevAcceptedOrders.filter(order => order.id !== orderId);
             }
         });
     };
 
     return (
-        <Container maxWidth="md" style={{ marginTop: '20px' }}>
+
+        <Container maxWidth="md" style={{ marginTop: '20px'}}>
+            <Button onClick={() => navigate("/")}><HomeIcon fontSize={"large"} ></HomeIcon></Button>
             <Typography variant="h4" gutterBottom>
                 Trip Overview
             </Typography>
@@ -81,9 +102,9 @@ const TripOverview = () => {
                     {orders.length > 0 ? (
                         <Grid container spacing={3} marginTop={3}>
                             {orders.map(order => (
-                                <Grid item xs={12} sm={6} md={4} key={order.id}>
-                                    <Card>
-                                        <CardContent>
+                                <CustomGridItem item xs={12} sm={6} md={4} key={order.id}>
+                                    <CustomCard>
+                                        <CustomCardContent>
                                             <Typography variant="h6">
                                                 {order.ordererName}
                                             </Typography>
@@ -93,19 +114,21 @@ const TripOverview = () => {
                                             {order.articles.map(a => (
                                                 <Typography key={a.description} variant="body2">{a.description}</Typography>
                                             ))}
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={orderStatus[order.id] || false}
-                                                        onChange={(e) => handleCheckboxChange(order.id, e.target.checked)}
-                                                        color="primary"
-                                                    />
-                                                }
-                                                label={orderStatus[order.id] ? "Angenommen" : "Nicht angenommen"}
-                                            />
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
+                                            <CheckboxWrapper>
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox
+                                                            checked={orderStatus[order.id] || false}
+                                                            onChange={(e) => handleCheckboxChange(order.id, e.target.checked)}
+                                                            color="primary"
+                                                        />
+                                                    }
+                                                    label={orderStatus[order.id] ? "Angenommen" : "Nicht angenommen"}
+                                                />
+                                            </CheckboxWrapper>
+                                        </CustomCardContent>
+                                    </CustomCard>
+                                </CustomGridItem>
                             ))}
                         </Grid>
                     ) : (
@@ -115,7 +138,7 @@ const TripOverview = () => {
                     )}
                 </div>
             ) : (
-                <ShoppingList orders={acceptedOrders} />
+                <ShoppingList orders={acceptedOrders} back={() => setEinkaufsliste(false)}/>
             )}
         </Container>
     );

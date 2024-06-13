@@ -8,7 +8,7 @@
 import React, {useState} from 'react';
 import {ITrip} from "../models/ITrip";
 import Tripdetails from "./Tripdetails";
-import {Box, Button, Container, Grid, Paper, Typography} from "@mui/material";
+import {Box, Button, Container, Grid, Menu, MenuItem, Paper, Typography} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import LoginPopUp from "./popUps/LoginPopUp";
 import './css/buttonstyle.css';
@@ -32,6 +32,20 @@ const Dashboard:React.FC<DashboardProps> = ({trips}) => {
         setRegistrationPopUp(false);
     }
 
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        document.cookie = `name=${getUser()}; expires=Thu, 01-Jan-70 00:00:01 GMT;`;
+    }
+
 
     return (
         <div>
@@ -39,13 +53,35 @@ const Dashboard:React.FC<DashboardProps> = ({trips}) => {
                 <Box className="header-container" display="flex" justifyContent="space-between" alignItems="center">
                     <Typography variant="h4">DASHBOARD PAGE</Typography>
                     {getUser() ?
-                        <Button variant="contained"
-                                         color="primary"
-                                         onClick={() => navigate("/tripOverview")}
-                                         className="login-button"
+                        <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleMenuOpen}
+                            className="login-button"
+                            style={{width:'15rem'}}
                         >
                             {getUser()}
-                        </Button> :
+                        </Button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                        >
+                            <MenuItem
+                                onClick={() => navigate("/tripOverview")}
+                                style={{ fontSize: '1rem', fontWeight: 500, paddingLeft: '20px', paddingRight: '20px' }}
+                            >
+                                Trips
+                            </MenuItem>
+                            <MenuItem
+                                onClick={() => handleLogout()}
+                                style={{ fontSize: '1rem', fontWeight: 500, paddingLeft: '20px', paddingRight: '20px', width: '15rem' }}
+                            >
+                                Abmelden
+                            </MenuItem>
+                        </Menu>
+                        </div>  :
                         <Button
                             variant="contained"
                             color="primary"
