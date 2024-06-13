@@ -41,7 +41,7 @@ const Registration = () => {
                 document.cookie = "name="+username+";path=/" + ";expires="+expire.toUTCString();
                 document.cookie = "password="+encodeURI(pwd)+";path=/" + ";expires="+expire.toUTCString();
             })
-        navigate("/createTrip")
+        navigate("/login")
     }
     return (
         <Container maxWidth="xs">

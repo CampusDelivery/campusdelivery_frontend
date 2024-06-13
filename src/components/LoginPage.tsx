@@ -41,7 +41,7 @@ const LoginPage = () => {
                 document.cookie = "name="+username+";path=/" + ";expires="+expire.toUTCString();
                 document.cookie = "password="+encodeURI(pwd)+";path=/" + ";expires="+expire.toUTCString();
 
-                 navigate("/createTrip")
+                 navigate("/tripOverview")
 
 
             if (response.status === 404) {

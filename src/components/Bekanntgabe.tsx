@@ -6,26 +6,25 @@
  * Time: 08:39
  */
 import React, {useState} from 'react';
-import {Box, Button, Container, TextField, Typography} from "@mui/material";
+import {Box, Button, Container, Input, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import './css/formstyle.css';
 import {getUser} from "../Utility";
 
+
 const Bekanntgabe = () => {
     const navigate = useNavigate();
     const [destination, setDestination] = useState<string>("");
-    const [time, setTime] = useState<string>("");
+    const [time, setTime] = useState<string>(null);
     const [maxNumberOfOrders, setMaxNumberOfOrders] = useState<number>(null);
 
-
-    const onhandleBekanntgabe = () => {
-        //trip wird erstellt:
+    const onHandleBekanntgabe = () => {
         axios.post(`http://localhost:3003/trip/new?email=${getUser()}`, {
             destination: destination,
             time: time,
             maxNumberOfOrders: maxNumberOfOrders,
-        }).then((response) => console.log(response.status))
+        }).then((response) => console.log(response.data))
         navigate("/tripOverview")
     }
     return (
@@ -42,13 +41,12 @@ const Bekanntgabe = () => {
                    fullWidth
                    margin="normal"
                />
-               <TextField
-                   label="Time"
+               <Input
+                   type="time"
                    value={time}
                    onChange={(e) => setTime(e.target.value)}
                    required
                    fullWidth
-                   margin="normal"
                />
                <TextField
                    label="Maximum Orders"
@@ -60,7 +58,7 @@ const Bekanntgabe = () => {
                />
 
                <Button type="submit" variant="contained" color="primary" fullWidth
-                       onClick={() => onhandleBekanntgabe()}>
+                       onClick={() => onHandleBekanntgabe()}>
                    Einkauf bekanntgeben
                </Button>
            </Box>

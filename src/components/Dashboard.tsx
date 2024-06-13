@@ -13,6 +13,7 @@ import {Link, useNavigate} from "react-router-dom";
 import LoginPopUp from "./popUps/LoginPopUp";
 import './css/buttonstyle.css';
 import './css/dashboardstyle.css';
+import {getUser} from "../Utility";
 
 interface DashboardProps{
     trips:ITrip[]
@@ -25,12 +26,14 @@ const Dashboard:React.FC<DashboardProps> = ({trips}) => {
         navigate("/login");
     }
 
+
+
     return (
 
         <Container maxWidth="lg" className="dashboard-container">
             <Box className="header-container" display="flex" justifyContent="space-between" alignItems="center">
                 <Typography variant="h4">DASHBOARD PAGE</Typography>
-                <Link to="/login" className="login-link">
+                {getUser() ? <h2>{getUser()}</h2> : <Link to="/login" className="login-link">
                     <Button
                         variant="contained"
                         color="primary"
@@ -39,7 +42,8 @@ const Dashboard:React.FC<DashboardProps> = ({trips}) => {
                     >
                         Anmelden
                     </Button>
-                </Link>
+                </Link>}
+
             </Box>
             {/*<Button onClick={() => setCreatePopup(true)}>Anmelden</Button>*/}
             {trips ? trips.map(t => {
