@@ -98,7 +98,7 @@ const LoginPopUp:React.FC<LoginPopUpProps> = ({isOpen, onCancelClick}) => {
                         <Button type="submit" variant="contained" color="primary" fullWidth>
                             Login
                         </Button>
-                        <Button variant="contained" color="primary" fullWidth onClick={() => onCancelClick}>
+                        <Button variant="contained" color="primary" fullWidth onClick={() => onCancelClick()}>
                             Abbrechen
                         </Button>
                     </form>

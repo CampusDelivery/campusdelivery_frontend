@@ -46,6 +46,11 @@ const Dashboard:React.FC<DashboardProps> = ({trips}) => {
         document.cookie = `name=${getUser()}; expires=Thu, 01-Jan-70 00:00:01 GMT;`;
     }
 
+    const onhandleCancle = () => {
+        console.log("Cancle click!")
+        setLoginPopup(false);
+    }
+
 
     return (
         <div>
@@ -93,18 +98,16 @@ const Dashboard:React.FC<DashboardProps> = ({trips}) => {
                     }
 
                 </Box>
-                {/*<Button onClick={() => setCreatePopup(true)}>Anmelden</Button>*/}
+
                 {trips ? trips.map(t => {
                     return (
                         <Tripdetails trip={t}/>
                     )
                 }) : ""}
 
-                {/*<LoginPopUp*/}
-                {/*    isOpen={createPopup}*/}
-                {/*    onCancelClick={()=> setCreatePopup(false)}/>*/}
+
             </Container>
-            <LoginPopUp isOpen={loginPopup} onCancelClick={() => setLoginPopup(false)}></LoginPopUp>
+            <LoginPopUp isOpen={!!loginPopup} onCancelClick={() => onhandleCancle()}></LoginPopUp>
             <RegistrationPopUp isOpen={registrationPopUp} onCancelClick={() => handleRegistration()}></RegistrationPopUp>
         </div>
     );
